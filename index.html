@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Dynamic Box Generation using Javascript</title>
+	<style type="text/css">
+		.alignCenter {
+			text-align: center;
+			margin: 20px 0;
+		}
+
+		input,
+		button {
+			padding: 5px;
+		}
+
+		#boxes div {
+			background-color: red;
+			width: 100px;
+			height: 100px;
+			margin: 5px;
+			border-radius: 5px;
+			float: left;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1 class="alignCenter">Generate Dynamic Boxes</h1>
+	<div class="alignCenter">
+		<input type="number" id="noOfBoxes" placeholder="Enter a number" />
+		<button id="btnGenerate">Generate Boxes</button>
+	</div>
+
+	<div id="boxes"></div>
+
+	<script type="text/javascript">
+		var btn = document.querySelector('#btnGenerate');
+		btn.addEventListener('click', generateBoxes);
+
+		function generateBoxes() {
+			var noOfBoxes = parseInt(document.querySelector('#noOfBoxes').value);
+			if (isNaN(noOfBoxes)) {
+				alert('Please enter a valid input');
+			} else {
+				var boxes = document.querySelector('#boxes');
+				boxes.innerHTML = "";
+				for (var i = 0; i < noOfBoxes; i++) {
+					var div = document.createElement('div');
+					(function (index) {
+						div.addEventListener('click', function () {
+							alert('Box ' + (index + 1) + ' is clicked');
+						});
+					})(i);
+					boxes.appendChild(div);
+				}
+			}
+		}
+	</script>
+</body>
+
+</html>
